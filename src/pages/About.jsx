@@ -1,6 +1,15 @@
 import React from "react";
+import toast from "react-hot-toast";
 
 const About = () => {
+  const alertMe = (name) => {
+    if (name === "Abdul!") {
+      toast.success(`Hello ${name}`);
+    } else {
+      toast.error("Name is not Abdul");
+    }
+  };
+
   return (
     <div>
       <h1>About</h1>
@@ -39,6 +48,20 @@ const About = () => {
         quisquam pariatur dolore esse repudiandae accusantium possimus illo
         cumque incidunt veritatis enim est. Voluptate?
       </p>
+
+      {/* <button
+        onClick={alertMe}
+        className="p-1.5 bg-red-500 cursor-pointer text-white mt-10 mx-10"
+      >
+        Click me
+      </button> */}
+
+      <button
+        onClick={() => alertMe("Abdul")}
+        className="p-1.5 bg-red-500 cursor-pointer text-white mt-10 mx-10"
+      >
+        Click me
+      </button>
     </div>
   );
 };

@@ -1,11 +1,11 @@
 function Navbar() {
   return (
-    <nav className="bg-[#0C4C7C]">
-      <div className=" mx-auto flex justify-between items-center max-w-[1300px] py-5">
-        <a href="/" className="text-white text-2xl font-bold uppercase italic">
+    <nav className="fixed top-0 left-0 bg-white w-full z-50 px-5 backdrop-blur-lg opacity-70 shadow-sm">
+      <div className="mx-auto flex justify-between items-center max-w-[1300px] py-5">
+        <a href="/" className=" text-2xl font-bold uppercase italic">
           Logo
         </a>
-        <ul className="text-white flex gap-8">
+        <ul className="text-black flex gap-8">
           <li>
             <a href="/">Home</a>
           </li>
