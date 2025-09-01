@@ -1,5 +1,7 @@
 import React from "react";
 import toast from "react-hot-toast";
+import Button from "../components/Button";
+import Card from "../components/Card";
 
 const About = () => {
   const alertMe = (name) => {
@@ -49,19 +51,44 @@ const About = () => {
         cumque incidunt veritatis enim est. Voluptate?
       </p>
 
-      {/* <button
+      <button
         onClick={alertMe}
         className="p-1.5 bg-red-500 cursor-pointer text-white mt-10 mx-10"
       >
         Click me
-      </button> */}
-
-      <button
-        onClick={() => alertMe("Abdul")}
-        className="p-1.5 bg-red-500 cursor-pointer text-white mt-10 mx-10"
-      >
-        Click me
       </button>
+      {/* onClick={() => alertMe("Abdul")} */}
+
+      <Button>Click me</Button>
+
+      <div className="grid grid-cols-3 container mx-auto mt-10">
+        <Card title="Card 1">
+          <p>
+            Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+            Consectetur nobis earum dolorum facere, sunt odit tempora dolorem
+            sint sequi totam, soluta fugiat, labore animi laborum ex non impedit
+            iure assumenda!
+          </p>
+        </Card>
+
+        <Card title="hello" className="bg-green-600">
+          <p>
+            Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+            Consectetur nobis earum dolorum facere, sunt odit tempora dolorem
+            sint sequi totam, soluta fugiat, labore animi laborum ex non impedit
+            iure assumenda!
+          </p>
+        </Card>
+
+        <Card title="Card 3">
+          <p>
+            Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+            Consectetur nobis earum dolorum facere, sunt odit tempora dolorem
+            sint sequi totam, soluta fugiat, labore animi laborum ex non impedit
+            iure assumenda!
+          </p>
+        </Card>
+      </div>
     </div>
   );
 };
