@@ -2,8 +2,11 @@ import React from "react";
 import toast from "react-hot-toast";
 import Button from "../components/Button";
 import Card from "../components/Card";
+import { useCount } from "../context/CountContext";
 
 const About = () => {
+  const { count } = useCount();
+
   const alertMe = (name) => {
     if (name === "Abdul!") {
       toast.success(`Hello ${name}`);
@@ -13,8 +16,8 @@ const About = () => {
   };
 
   return (
-    <div>
-      <h1>About</h1>
+    <div className="mt-20">
+      <h1>This user count is {count}</h1>
       <p>
         Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quis facilis
         magni dolorum quam odit, alias, placeat, fugit vel dolor iusto
