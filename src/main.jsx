@@ -9,6 +9,5 @@ createRoot(document.getElementById("root")).render(
     <CountProvider>
       <App />
     </CountProvider>
-    x
   </StrictMode>
 );

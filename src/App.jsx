@@ -6,6 +6,7 @@ import About from "./pages/About";
 import Form from "./components/Form";
 import { Toaster } from "react-hot-toast";
 import Contact from "./pages/Contact";
+import Post from "./pages/Post";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="/post" element={<Post />} />
         <Route path="/signin" element={<Form />} />
       </Routes>
     </BrowserRouter>
