@@ -23,6 +23,9 @@ function Navbar() {
           <li>
             <Link to="/post">Post</Link>
           </li>
+          <li>
+            <Link to="/movies">Movies</Link>
+          </li>
         </ul>
 
         <div className="md:hidden" onClick={() => setIsOpen(!isOpen)}>
