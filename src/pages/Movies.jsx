@@ -6,6 +6,7 @@ const Movies = () => {
   const [error, setError] = useState(null);
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(0);
+  const [genre, setGenre] = useState("all");
 
   useEffect(() => {
     const fetchMovies = async () => {
@@ -13,7 +14,7 @@ const Movies = () => {
         const res = await fetch(
           `https://${
             import.meta.env.VITE_RAPID_API_HOST
-          }/list_movies.json?limit=24&page=${page}&quality=all&genre=all&minimum_rating=0&query_term=0&sort_by=date_added&order_by=desc&with_rt_ratings=false`,
+          }/list_movies.json?limit=24&page=${page}&quality=all&genre=${genre}&minimum_rating=0&query_term=0&sort_by=date_added&order_by=desc&with_rt_ratings=false`,
           {
             method: "GET",
             headers: {
@@ -35,7 +36,7 @@ const Movies = () => {
     };
 
     fetchMovies();
-  }, [page]);
+  }, [page, genre]);
 
   if (loading) {
     return (
@@ -58,6 +59,29 @@ const Movies = () => {
       <h1 className="text-center tracking-wider font-bold font-mono text-2xl">
         Latest Movies
       </h1>
+
+      {/* Filter Button */}
+      <div className="flex justify-center gap-4 mt-6">
+        <select
+          value={genre}
+          onChange={(e) => {
+            setGenre(e.target.value);
+            setPage(1);
+          }}
+          className="border border-gray-300 rounded px-3 py-2 text-gray-700"
+        >
+          <option value="all">All</option>
+          <option value="action">Action</option>
+          <option value="comedy">Comedy</option>
+          <option value="drama">Drama</option>
+          <option value="horror">Horror</option>
+          <option value="sci-fi">Sci-Fi</option>
+          <option value="romance">Romance</option>
+          <option value="thriller">Thriller</option>
+          <option value="western">Western</option>
+          <option value="animation">Animation</option>
+        </select>
+      </div>
 
       <div className="grid grid-cols-6 gap-10 mt-10">
         {movies.map((movie) => (
