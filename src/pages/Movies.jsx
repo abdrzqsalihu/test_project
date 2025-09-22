@@ -1,3 +1,4 @@
+import axios from "axios";
 import React, { useEffect, useState } from "react";
 
 const Movies = () => {
@@ -8,25 +9,63 @@ const Movies = () => {
   const [totalPages, setTotalPages] = useState(0);
   const [genre, setGenre] = useState("all");
 
+  // USING BUILT-IN FETCH METHOD
+  // useEffect(() => {
+  //   const fetchMovies = async () => {
+  //     try {
+  //       const res = await fetch(
+  //         `https://${
+  //           import.meta.env.VITE_RAPID_API_HOST
+  //         }/list_movies.json?limit=24&page=${page}&quality=all&genre=${genre}&minimum_rating=0&query_term=0&sort_by=date_added&order_by=desc&with_rt_ratings=false`,
+  //         {
+  //           method: "GET",
+  //           headers: {
+  //             "x-rapidapi-host": import.meta.env.VITE_RAPID_API_HOST,
+  //             "x-rapidapi-key": import.meta.env.VITE_RAPID_API_KEY,
+  //           },
+  //         }
+  //       );
+  //       const data = await res.json();
+  //       console.log(data);
+  //       setMovies(data.data?.movies || []);
+  //       setTotalPages(Math.ceil(data.data?.movie_count / 24));
+  //     } catch (err) {
+  //       console.error("Error fetching movies:", err);
+  //       setError(err);
+  //     } finally {
+  //       setLoading(false);
+  //     }
+  //   };
+
+  //   fetchMovies();
+  // }, [page, genre]);
+
+  // AXIOS FETCH
   useEffect(() => {
     const fetchMovies = async () => {
       try {
-        const res = await fetch(
-          `https://${
-            import.meta.env.VITE_RAPID_API_HOST
-          }/list_movies.json?limit=24&page=${page}&quality=all&genre=${genre}&minimum_rating=0&query_term=0&sort_by=date_added&order_by=desc&with_rt_ratings=false`,
+        const res = await axios.get(
+          `https://${import.meta.env.VITE_RAPID_API_HOST}/list_movies.json`,
           {
-            method: "GET",
+            params: {
+              limit: 24,
+              page,
+              quality: "all",
+              genre,
+              minimum_rating: 0,
+              query_term: 0,
+              sort_by: "date_added",
+              order_by: "desc",
+              with_rt_ratings: false,
+            },
             headers: {
               "x-rapidapi-host": import.meta.env.VITE_RAPID_API_HOST,
               "x-rapidapi-key": import.meta.env.VITE_RAPID_API_KEY,
             },
           }
         );
-        const data = await res.json();
-        console.log(data);
-        setMovies(data.data?.movies || []);
-        setTotalPages(Math.ceil(data.data?.movie_count / 24));
+        setMovies(res.data.data?.movies || []);
+        setTotalPages(Math.ceil(res.data.data?.movie_count / 24));
       } catch (err) {
         console.error("Error fetching movies:", err);
         setError(err);
@@ -59,7 +98,6 @@ const Movies = () => {
       <h1 className="text-center tracking-wider font-bold font-mono text-2xl">
         Latest Movies
       </h1>
-
       {/* Filter Button */}
       <div className="flex justify-center gap-4 mt-6">
         <select
